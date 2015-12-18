@@ -15,6 +15,16 @@
 
     npm install --save find-tag-in-git-log
 
+```js
+var find = require('find-tag-in-git-log')
+var n = 5 // take last 5 commits
+find(n)
+  .then(function (tag) {
+    // tag is the found string
+    // if undefined - could not find tag
+  })
+```
+
 ### Small print
 
 Author: Gleb Bahmutov &copy; 2015

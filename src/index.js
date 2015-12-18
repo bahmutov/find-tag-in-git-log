@@ -1,5 +1,5 @@
 const ggit = require('ggit')
-const findTag = require('./src/find-tag')
+const findTag = require('./find-tag')
 const la = require('lazy-ass')
 const is = require('check-more-types')
 
@@ -24,11 +24,11 @@ function findTagInCommits (l) {
   return tag
 }
 
-function findTagInLog (isTest) {
-  // how many commits to consider?
-  const N = 5
+// how many commits to consider?
+function findTagInLog (n, isTest) {
+  la(is.positiveNumber(n), 'invalid number of commits to search', n)
   return ggit.commits.all(process.cwd())
-    .then(commits => commits.slice(0, N))
+    .then(commits => commits.slice(0, n))
     .then(findTagInCommits)
 }
 
